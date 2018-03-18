@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2018 by Balla1987 (http://jsbin.com/vilejit/4/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+<link href="https://fonts.googleapis.com/css?family=Mina" rel="stylesheet">
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+  <title>JS Bin</title>
+<style id="jsbin-css">
+* {
+margin: 0; padding: 0; }
+
+body, html {
+  height: 100%;
+}
+
+#clock {
+font-family: 'Mina', sans-serif;
+font-weight: bold;
+text-align: center;
+top: 40%;
+position: relative;
+font-size: 170%;
+margin-top: -5%;
+color: #e1d9d9;
+}
+
+.icon {
+width: 7rem;
+margin: 0 auto;
+color: #e1d9d9;
+position: relative;
+top: 10%;
+font-weight: bold;
+font-family: 'Mina', sans-serif;
+font-size: 20px;
+}
+
+.description {
+font-family: 'Mina', sans-serif;
+font-weight: bold;
+font-size: 20px;
+position: relative;
+top: 20%;
+text-align: center;
+color: #e1d9d9;
+margin: 0.2rem;
+}
+
+
+
+</style>
+</head>
+<body>
+<div class="icon">
+  <i class="far fa-clock" id="clock_icon"></i> Színóra
+  </div>
+<p class="description"> Ez egy négy óránként színt váltó színóra</p>
+<div id="clock" onmouseover="border_Styler()" onmouseout="border_Off()"></div>
+<script id="jsbin-javascript">
+function colorClock() {
+var today = new Date();
+var h = today.getHours();
+var m = today.getMinutes();
+var s = today.getSeconds();
+
+if(h<=9){
+h =  '0' + h;
+}
+if(m<=9){
+m = '0' + m;
+}
+if (s<=9){
+s = '0' + s;
+}
+
+var clockFace = h + ':' + m + ':' + s;
+
+var colorChanger = 0;
+for (colorChanger; colorChanger<255; colorChanger++){
+if(h<4){
+colorChanger = 25;
+h = colorChanger;
+}
+else if(h<8){
+colorChanger = 50;
+h = colorChanger;
+}
+else if(h<12){
+colorChanger = 100;
+h = colorChanger;
+}
+else if(h<16){
+colorChanger = 150;
+h = colorChanger;
+}
+else if(h<20){
+colorChanger = 200;
+h = colorChanger;
+}
+else if(h<24){
+colorChanger = 250;
+h = colorChanger;
+}
+}
+
+var bgColor = "rgb(" + h + "," + m + "," + s + ")";
+
+document.body.style.background = bgColor;
+
+document.getElementById('clock').innerHTML = clockFace;
+
+setTimeout(function() {
+colorClock();},
+1000);
+}
+
+colorClock();
+
+
+function border_Styler(){
+document.getElementById('clock').style.border = 'solid 1px #42f4df';
+document.getElementById('clock').style.fontSize = '25px';
+document.getElementById('clock').style.borderRadius = '2rem';
+document.getElementById('clock').style.marginLeft = '4rem';
+document.getElementById('clock').style.marginRight = '4rem';
+document.getElementById('clock_icon').style.fontSize = '25px';
+}
+
+function border_Off(){
+document.getElementById('clock').style.border = 'none';
+document.getElementById('clock').style.fontSize = '20px';
+document.getElementById('clock_icon').style.fontSize = '20px';
+}
+
+
+</script>
+</body>
+</html>
